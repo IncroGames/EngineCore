@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# Generated directories
+Saved/
+Intermediate/
