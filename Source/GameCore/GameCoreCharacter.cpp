@@ -94,13 +94,13 @@ void AGameCoreCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Loc
 
 void AGameCoreCharacter::TurnAtRate(float Rate)
 {
-	// calculate delta for this frame from the rate information
+	// Calculate delta for this frame from the rate information
 	AddControllerYawInput(Rate * BaseTurnRate * GetWorld()->GetDeltaSeconds());
 }
 
 void AGameCoreCharacter::LookUpAtRate(float Rate)
 {
-	// calculate delta for this frame from the rate information
+	// Calculate delta for this frame from the rate information
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
 
@@ -108,27 +108,55 @@ void AGameCoreCharacter::MoveForward(float Value)
 {
 	if ((Controller != NULL) && (Value != 0.0f))
 	{
-		// find out which way is forward
+		// Find out which way is forward
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-		// get forward vector
+		// Get forward vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value);
 	}
 }
 
+void AGameCoreCharacter::MoveBackward(float Value)
+{
+	if ((Controller != NULL) && (Value != 0.0f))
+	{
+		// Find out which way is backward
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+		// Get way backwards
+		const FVector Direction = FRotationMatrix(YawRotation).GetunitAxis(EAxis::X);
+		AddMovementInput(Direction, Value);
+	}
+}
 void AGameCoreCharacter::MoveRight(float Value)
 {
 	if ( (Controller != NULL) && (Value != 0.0f) )
 	{
-		// find out which way is right
+		// Find out which way is right
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 	
-		// get right vector 
+		// Get right vector 
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-		// add movement in that direction
+		// Adds Movement in that direction
 		AddMovementInput(Direction, Value);
+	}
+}
+
+void AGameCoreCharacter::MoveLeft(float Value)
+{
+	if ( (Controller != NULL) && (Value != 0.0f) )
+	{
+		// Find out which way is left
+		const FRotator Rotation = Controller->GetControllerRotation():
+		const FRotator YawRotation(0,Rotation.Yaw,0);
+
+		// Get left vector
+		const FVector Direction = FRotationMatrix(YawRotation).GetunitAxis(EAxis::Y)
+		// Adds Movement in that direction
+		AddMovementInput(Direction,Value):
 	}
 }
