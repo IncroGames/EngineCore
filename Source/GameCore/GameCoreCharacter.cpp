@@ -118,19 +118,6 @@ void AGameCoreCharacter::MoveForward(float Value)
 	}
 }
 
-void AGameCoreCharacter::MoveBackward(float Value)
-{
-	if ((Controller != NULL) && (Value != 0.0f))
-	{
-		// Find out which way is backward
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
-
-		// Get way backwards
-		const FVector Direction = FRotationMatrix(YawRotation).GetunitAxis(EAxis::X);
-		AddMovementInput(Direction, Value);
-	}
-}
 void AGameCoreCharacter::MoveRight(float Value)
 {
 	if ( (Controller != NULL) && (Value != 0.0f) )
@@ -143,20 +130,5 @@ void AGameCoreCharacter::MoveRight(float Value)
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		// Adds Movement in that direction
 		AddMovementInput(Direction, Value);
-	}
-}
-
-void AGameCoreCharacter::MoveLeft(float Value)
-{
-	if ( (Controller != NULL) && (Value != 0.0f) )
-	{
-		// Find out which way is left
-		const FRotator Rotation = Controller->GetControllerRotation():
-		const FRotator YawRotation(0,Rotation.Yaw,0);
-
-		// Get left vector
-		const FVector Direction = FRotationMatrix(YawRotation).GetunitAxis(EAxis::Y)
-		// Adds Movement in that direction
-		AddMovementInput(Direction,Value):
 	}
 }
